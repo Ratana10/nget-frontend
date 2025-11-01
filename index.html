@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="km">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Office02</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <img src="https://1000logos.net/wp-content/uploads/2017/02/Facebook-Logosu.png" alt="Logo">
+    <div>
+      <ul>
+        <li>Home</li>
+        <li>Search</li>
+        <li>Document</li>
+        <li>Map</li>
+      </ul>
+    </div>
+    <div class="login">
+        <a href="">login</a>
+    </div>
+  </nav>
+
+  <!-- Add Document Button -->
+  <div class="add-document">
+    <button id="openForm">Add Document</button>
+    <select name="" id="">
+        <label for="">ចំនួនបង្ហាញ</label>
+        <option value="">15</option>
+        <option value="">30</option>
+        <option value="">60</option>
+        <option value="">100</option>
+        <option value="">All</option>  
+
+    </select>
+  </div>
+
+
+  <!-- Data Table -->
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>លេខចូល</th>
+          <th>លេខលិខិត(IR)</th>
+          <th>លេខចេញ</th>
+          <th>ថ្ងៃ.ខែ.លិខិតចូល/ចេញ</th>
+          <th>អង្គភាព/ប្រភពលិខិត</th>
+          <th>ប្រភេទឯកសារ</th>
+          <th>មន្រ្តីទទួលមុខការ</th>
+          <th>ស្ថានភាពឯកសារ</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="tableBody">
+        <!-- Example row -->
+        
+      </tbody>
+    </table>
+  </div>
+
+  <div id="overlay"></div>
+
+    <div id="myForm">
+        <h2>ឯកសារចូល</h2>
+        <form id="contactForm">
+            <label>ឯកសារ</label><br>
+            <input type="text" name="name" required><br><br>
+
+            <label>ប្រភេទឯកសារ</label><br>
+            <input type="email" name="email" required><br><br>
+
+            <button type="submit">Submit</button>
+            <button type="button" id="closeForm">Close</button>
+        </form>
+    </div>
+
+
+  <script>
+ const openBtn = document.getElementById('openForm');   //<!-- botton -->
+const closeBtn = document.getElementById('closeForm');
+const form = document.getElementById('myForm'); //div form
+const overlay = document.getElementById('overlay'); 
+
+openBtn.addEventListener('click', () => {
+    form.style.display = 'block';
+    overlay.style.display = 'block';
+});
+
+closeBtn.addEventListener('click', () => {
+    form.style.display = 'none';
+    overlay.style.display = 'none';
+});
+
+// Optional: close form when clicking outside of it
+overlay.addEventListener('click', () => {
+    form.style.display = 'none';
+    overlay.style.display = 'none';
+});
+
+// Form submit action
+document.getElementById('contactForm').addEventListener('submit', function(e) {
+    e.preventDefault(); // prevent page reload
+    alert("Form submitted!");
+    form.style.display = 'none';
+    overlay.style.display = 'none';
+});
+
+const fetchDocument = async () => {
+  const res = await fetch("http://localhost:4000/doc")
+
+  const data = await res.json();
+
+  const docs = data.date
+
+
+tableBody.innerHTML = "";
+
+    // Render data into table
+    docs.forEach((doc, index) => {
+      const row = `
+        <tr>
+          <td>${doc.no}</td>
+          <td>${doc.ir}</td>
+          <td>${doc.outNo}</td>
+          <td>${doc.submitDate}</td>
+          <td>${doc.source}</td>
+          <td>${doc.doc}</td>
+          <td>${doc.officer || '-'}</td>
+          <td>${doc.status || '-'}</td>
+          <td>
+            <button class="editBtn">Edit</button>
+            <button class="deleteBtn">Delete</button>
+          </td>
+        </tr>`;
+      tableBody.insertAdjacentHTML('beforeend', row);
+    });
+  // console.log("data", data);
+}
+
+window.addEventListener("DOMContentLoaded", fetchDocument);
+  </script>
+</body>
+</html>

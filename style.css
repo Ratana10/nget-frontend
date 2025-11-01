@@ -1,0 +1,193 @@
+/* ===== Global Styles ===== */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    background-color: #f5f5f5;
+}
+
+/* ===== Navbar ===== */
+.navbar {
+    display: flex;
+    align-items: center;
+    background-color: #3b5998;
+    color: white;
+    padding: 10px 20px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    z-index: 100;
+}
+
+.navbar img {
+    width: 50px;
+    margin-right: 15px;
+}
+
+.navbar ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.navbar li {
+    margin-right: 20px;
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.navbar li:hover {
+    color: #ffd700;
+}
+.navbar .login {
+      margin-left: auto;
+      padding-right: 50px;
+
+}
+
+.navbar .login a {
+  color: white;
+  text-decoration: none;
+}
+/* ===== Add Document Button ===== */
+.add-document {
+    padding: 20px;
+    margin-top: 80px;
+}
+
+.add-document button {
+    background-color: #3b5998;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.add-document button:hover {
+    background-color: #2d4373;
+}
+
+/* ===== Table ===== */
+.table-container {
+    padding: 20px;
+    overflow-x: auto;
+    
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+
+
+
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+th {
+    background-color: #3b5998;
+    color: white;
+    position: f;
+    top: 0;   /* sticks to the top of viewport or container */
+    z-index: 2;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+td:last-child {
+    text-align: center;
+}
+
+/* ===== Overlay ===== */
+#overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 500;
+}
+
+/* ===== Popup Form ===== */
+#myForm {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 30px;
+    width: 350px;
+    max-width: 90%;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+    z-index: 1000;
+    animation: fadeIn 0.3s ease;
+}
+
+#myForm h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+    text-align: center;
+}
+
+#myForm label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+#myForm input {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+#myForm button {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+#myForm button[type="submit"] {
+    background-color: #3b5998;
+    color: white;
+    margin-right: 10px;
+}
+
+#myForm button[type="submit"]:hover {
+    background-color: #2d4373;
+}
+
+#myForm button#closeForm {
+    background-color: #ccc;
+}
+
+#myForm button#closeForm:hover {
+    background-color: #999;
+}
+
+/* ===== Animation ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translate(-50%, -60%); }
+    to { opacity: 1; transform: translate(-50%, -50%); }
+}
